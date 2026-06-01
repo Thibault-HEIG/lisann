@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisann - Casting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="page.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Casting Lisann</h1>
+            <p class="subtitle">Découvrez votre rôle idéal.</p>
+            <p class="subtitle-less">Notez que le résultat est purement indicatif et qu'il dépend fortement du point de vue du scénariste.</p>
+        </header>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="characters.html">Personnages</a>
+            <a href="stats.html">Comparaison</a>
+            <a href="test.html" class="active">Casting</a>
+        </nav>
+
+        <div class="section-title">Traits de Caractère Recherchés</div>
+        <div class="grid-inputs" id="character-inputs"></div>
+
+        <div class="section-title">Vos Compétences Scéniques</div>
+        <div class="grid-inputs" id="performance-inputs"></div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="setGender('All', this)">Tous les Rôles</button>
+            <button class="filter-btn" onclick="setGender('M', this)">Hommes</button>
+            <button class="filter-btn" onclick="setGender('F', this)">Femmes</button>
+        </div>
+
+        <div class="actions">
+            <button class="btn-primary" onclick="findBestRoles()">Trouver son rôle</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const skills = [
+            { id: "liberte", label: "Liberté", type: "character" },
+            { id: "energie", label: "Énergie", type: "character" },
+            { id: "idealisme", label: "Idéalisme", type: "character" },
+            { id: "autorite", label: "Autorité", type: "character" },
+            { id: "sensibilite", label: "Sensibilité", type: "character" },
+            { id: "chant", label: "Chant", type: "performance" },
+            { id: "danse", label: "Danse", type: "performance" },
+            { id: "theatre", label: "Théâtre", type: "performance" },
+            { id: "romance", label: "Romance", type: "character" }
+        ];
+
+        const roles = [
+            { name: "Enguerrand", gender: "M", photo: "Photos/Leader.png", values: [5, 7, 9, 10, 3, 5, 6, 5, 7] },
+            { name: "Catherine", gender: "F", photo: "Photos/Catherine.png", values: [6, 6, 8, 9, 7, 4, 9, 7, 5] },
+            { name: "Reine", gender: "F", photo: "Photos/Reine.png", values: [3, 6, 6, 9, 0, 5, 8, 6, 3] },
+            { name: "Charles", gender: "M", photo: "Photos/Charles.png", values: [7, 8, 6, 1, 8, 9, 8, 8, 10] },
+            { name: "Octave", gender: "M", photo: "Photos/Octave.png", values: [1, 6, 2, 4, 1, 7, 5, 7, 2] },
+            { name: "Marie", gender: "F", photo: "Photos/Marie.png", values: [1, 3, 2, 7, 5, 7, 7, 4, 2] },
+            { name: "Lisann", gender: "F", photo: "Photos/Lisann.png", values: [10, 2, 10, 10, 0, 10, 6, 0, 0] },
+            { name: "Roi", gender: "M", photo: "Photos/Roi.png", values: [10, 4, 5, 7, 1, 8, 5, 4, 9] },
+            { name: "Claire", gender: "F", photo: "Photos/Claire.png", values: [9, 9, 10, 3, 8, 7, 8, 7, 4] },
+            { name: "Vincent", gender: "M", photo: "Photos/Vincent.png", values: [4, 8, 6, 6, 5, 3, 7, 10, 3] },
+            { name: "Père de Claire", gender: "M", photo: "Photos/Parents.png", values: [1, 3, 2, 5, 8, 6, 5, 2, 7] },
+            { name: "Mère de Claire", gender: "F", photo: "Photos/Parents.png", values: [1, 7, 2, 9, 4, 6, 5, 3, 5] },
+            { name: "Chef de la garde", gender: "All", photo: "Photos/Leader.png", values: [2, 8, 2, 10, 1, 4, 6, 3, 0] },
+            { name: "Disciple", gender: "All", photo: "Photos/Disciples.png", values: [6, 8, 5, 2, 4, 1, 7, 10, 4] }
+        ];
+
+        let currentGenderFilter = "All";
+
+        // Generate inputs
+        const charContainer = document.getElementById("character-inputs");
+        const perfContainer = document.getElementById("performance-inputs");
+
+        skills.forEach(skill => {
+            const html = `
+                <div class="skill-group">
+                    <label for="${skill.id}">${skill.label}</label>
+                    <input type="number" min="0" max="10" value="5" id="${skill.id}">
+                </div>
+            `;
+            if (skill.type === "character") charContainer.innerHTML += html;
+            else perfContainer.innerHTML += html;
+        });
+
+        function setGender(gender, btn) {
+            currentGenderFilter = gender;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            findBestRoles();
+        }
+
+        function cosineSimilarity(a, b) {
+            let dot = 0, normA = 0, normB = 0;
+            for (let i = 0; i < a.length; i++) {
+                dot += a[i] * b[i];
+                normA += a[i] * a[i];
+                normB += b[i] * b[i];
+            }
+            normA = Math.sqrt(normA);
+            normB = Math.sqrt(normB);
+            if (normA === 0 || normB === 0) return 0;
+            return dot / (normA * normB);
+        }
+
+        function findBestRoles() {
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+
+            const userValues = skills.map(s => Number(document.getElementById(s.id).value));
+
+            const perfIndices = [5, 6, 7];
+            const charIndices = [0, 1, 2, 3, 4, 8];
+
+            const filteredRoles = roles.filter(role =>
+                currentGenderFilter === "All" || role.gender === currentGenderFilter || role.gender === "All"
+            );
+
+            const scores = filteredRoles.map(role => {
+                let perfScoreSum = 0;
+                perfIndices.forEach(idx => {
+                    const u = userValues[idx];
+                    const r = role.values[idx];
+                    const coverage = r === 0 ? 1 : Math.min(u, r) / r;
+                    perfScoreSum += coverage;
+                });
+                const finalPerfScore = perfScoreSum / perfIndices.length;
+
+                const userCharVec = charIndices.map(idx => userValues[idx] - 5);
+                const roleCharVec = charIndices.map(idx => role.values[idx] - 5);
+                const similarity = cosineSimilarity(userCharVec, roleCharVec);
+                const finalCharScore = (similarity + 1) / 2;
+
+                const totalScore = (finalPerfScore * 0.6) + (finalCharScore * 0.4);
+
+                return {
+                    ...role,
+                    score: totalScore * 100
+                };
+            });
+
+            scores.sort((a, b) => b.score - a.score);
+
+            if (scores.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">Le rideau reste fermé. Aucun rôle ne correspond.</div>';
+                return;
+            }
+
+            scores.forEach(role => {
+                let slug = role.name.toLowerCase()
+                    .replace(/ /g, "-")
+                    .replace(/[éèê]/g, "e")
+                    .replace(/[àâ]/g, "a");
+                
+                if (role.name === "Enguerrand") slug = "enguerrand";
+                else if (role.name === "Lisann") slug = "";
+                else if (role.name === "Roi") slug = "le-roi";
+                else if (role.name === "Reine") slug = "la-reine";
+                else if (role.name === "Chef de la garde") slug = "chef-gardes";
+                else if (role.name === "Père de Claire" || role.name === "Mère de Claire") slug = "parents";
+
+                const url = `https://muxicfestival.my.canva.site/lisann-characters/${slug}`;
+
+                resultsContainer.innerHTML += `
+                    <div class="result-card" onclick="window.open('${url}', '_blank')" style="cursor: pointer;">
+                        ${role.score > 90 ? '<div class="match-badge">Rôle Idéal</div>' : ''}
+                        <img src="${role.photo}" alt="${role.name}" class="character-img" onerror="this.src='https://via.placeholder.com/320x480?text=${role.name}'">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="score-label">Affinité Artistique</div>
+                                <div class="match-percent">${Math.round(role.score)}%</div>
+                                <h3 class="character-name">${role.name}</h3>
+                            </div>
+                            <div class="score-bar-container">
+                                <div class="score-bar-fill" style="width: ${role.score}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Smooth scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+
+</html>

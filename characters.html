@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisann - Personnages</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding-bottom: 0;
+            overflow: hidden;
+        }
+
+        .characters-main {
+            flex: 1;
+            width: 96%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .characters-main iframe {
+            flex: 1;
+            border: none;
+            min-height: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Personnages</h1>
+        <p class="subtitle">Découvrez les détails de chaque rôle</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="characters.html" class="active">Personnages</a>
+        <a href="stats.html">Comparaison</a>
+        <a href="test.html">Casting</a>
+    </nav>
+
+    <main class="characters-main">
+        <iframe loading="lazy" src="https://www.canva.com/design/DAG-3W_RzjE/wr52GoiZ9YzsdvgVA-VaQA/view?embed"
+            allowfullscreen="allowfullscreen" allow="fullscreen">
+        </iframe>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+/* theme.css */
+:root {
+    --primary: #8b0000; /* Dark Crimson */
+    --accent: #d4af37;  /* Gold */
+    --bg: #fdfaf6;      /* Warm Parchment */
+    --card-bg: #ffffff;
+    --text-main: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --border: #e8e2d9;
+    --radius: 4px;      /* Sharp, elegant corners */
+    --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -4px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    background-image: radial-gradient(#e8e2d9 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+header::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--accent);
+    margin: 25px auto 0;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.subtitle-less {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 50px 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 18px 45px;
+    border: none;
+    border-radius: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 15px 30px -10px rgba(139, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -10px rgba(139, 0, 0, 0.5);
+    background-color: #a00000;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+nav a {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+    color: var(--text-muted);
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary);
+}
+
+@media (max-width: 640px) {
+    h1 { font-size: 2.5rem; }
+}
