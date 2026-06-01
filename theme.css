@@ -93,7 +93,8 @@ h1 {
 nav {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 15px 30px;
     margin-bottom: 40px;
 }
 
@@ -110,6 +111,100 @@ nav a:hover, nav a.active {
     color: var(--primary);
 }
 
+/* ─── Tablet ─── */
+@media (max-width: 768px) {
+    header {
+        margin-bottom: 35px;
+    }
+
+    header::after {
+        margin-top: 18px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    nav {
+        gap: 12px 20px;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        margin: 35px 0 20px;
+    }
+
+    .btn-primary {
+        padding: 15px 35px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ─── Mobile ─── */
 @media (max-width: 640px) {
-    h1 { font-size: 2.5rem; }
+    header {
+        margin-bottom: 25px;
+    }
+
+    header::after {
+        width: 50px;
+        margin-top: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .subtitle-less {
+        font-size: 0.7rem;
+    }
+
+    nav {
+        gap: 8px 15px;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+        margin: 25px 0 15px;
+        letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+        padding: 14px 28px;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        width: 100%;
+    }
+}
+
+/* ─── Small Mobile ─── */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+
+    nav a {
+        font-size: 0.7rem;
+    }
 }

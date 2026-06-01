@@ -195,8 +195,174 @@
     z-index: 2;
 }
 
+/* ─── Tablet ─── */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 15px;
+    }
+
+    .grid-inputs {
+        padding: 25px;
+        gap: 18px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 10px 22px;
+        font-size: 0.75rem;
+    }
+
+    .actions {
+        margin-bottom: 50px;
+    }
+
+    #results {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 25px;
+    }
+
+    .character-img {
+        height: 300px;
+    }
+
+    .card-content {
+        padding: 22px;
+    }
+
+    .character-name {
+        font-size: 1.5rem;
+    }
+
+    .match-percent {
+        font-size: 1.8rem;
+    }
+
+    footer {
+        margin-top: 50px;
+        padding: 30px 0;
+    }
+
+    .moodboard {
+        padding: 8px;
+        margin-top: 25px;
+    }
+}
+
+/* ─── Mobile ─── */
 @media (max-width: 640px) {
-    .grid-inputs { padding: 20px; grid-template-columns: 1fr; }
+    .container {
+        padding: 30px 12px;
+    }
+
+    .grid-inputs {
+        padding: 18px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .skill-group input {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .actions {
+        margin-bottom: 40px;
+    }
+
+    #results {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .character-img {
+        height: 260px;
+    }
+
+    .card-content {
+        padding: 18px;
+    }
+
+    .character-name {
+        font-size: 1.3rem;
+    }
+
+    .match-percent {
+        font-size: 1.6rem;
+    }
+
+    .no-results {
+        padding: 40px 15px;
+        font-size: 1.2rem;
+    }
+
+    .match-badge {
+        top: 12px;
+        right: 12px;
+        padding: 8px;
+        font-size: 0.55rem;
+    }
+
+    .home-intro {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .moodboard {
+        padding: 6px;
+        margin-top: 20px;
+    }
+
+    footer {
+        margin-top: 40px;
+        padding: 25px 0;
+    }
+
+    footer h5 {
+        font-size: 0.7rem;
+    }
+}
+
+/* ─── Small Mobile ─── */
+@media (max-width: 400px) {
+    .container {
+        padding: 20px 8px;
+    }
+
+    .grid-inputs {
+        padding: 12px;
+    }
+
+    .character-img {
+        height: 220px;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .character-name {
+        font-size: 1.1rem;
+    }
+
+    .match-percent {
+        font-size: 1.4rem;
+    }
 }
 
 /* ─── Homepage: Moodboard ─── */

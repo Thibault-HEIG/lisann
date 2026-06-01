@@ -8,6 +8,54 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="page.css">
+    <style>
+        .stats-main {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            width: calc(100vw - 40px);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .stats-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+        }
+
+        .stats-card img {
+            width: 100%;
+            height: auto;
+            border-radius: calc(var(--radius) / 2);
+        }
+
+        @media (max-width: 768px) {
+            .stats-main {
+                width: calc(100vw - 30px);
+            }
+
+            .stats-card {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-main {
+                width: 100%;
+                left: 0;
+                transform: none;
+                padding: 0 6px;
+            }
+
+            .stats-card {
+                padding: 6px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -23,11 +71,12 @@
             <a href="test.html">Casting</a>
         </nav>
 
-        <main style="max-width: 1400px; margin-left: auto; margin-right: auto; width: calc(100vw - 40px); position: relative; left: 50%; transform: translateX(-50%);">
-            <div style="background: var(--card-bg); padding: 15px; border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius);">
-                <img src="Photos/lisann_personnages.png" alt="Statistiques des personnages" style="width: 100%; height: auto; border-radius: calc(var(--radius) / 2);">
+        <main class="stats-main">
+            <div class="stats-card">
+                <img src="Photos/lisann_personnages.png" alt="Statistiques des personnages">
             </div>
         </main>
     </div>
 </body>
 </html>
+
