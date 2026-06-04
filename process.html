@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisann - Déroulement</title>
+    <meta name="description" content="Découvrez le déroulement des castings de Lisann : étapes, personnages et chansons à préparer pour votre audition.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        /* ─── Process Page ─── */
+
+        .process-section {
+            margin-bottom: 60px;
+        }
+
+        .process-intro {
+            max-width: 800px;
+            margin: 0 0 40px 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ─── Steps ─── */
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+
+            a {
+                color: rgb(28, 111, 201);
+            }
+        }
+
+        .step-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.35s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent);
+        }
+
+        .step-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1rem;
+            border-radius: 0;
+        }
+
+        .step-text {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-main);
+        }
+
+        .step-text strong {
+            color: var(--primary);
+        }
+
+        /* ─── Characters Section ─── */
+
+        .char-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin: 40px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .char-category-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .char-category-title .cat-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 0;
+        }
+
+        /* ─── Accordion ─── */
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 15px -4px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 18px 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            text-align: left;
+            gap: 16px;
+            transition: background 0.25s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(212, 175, 55, 0.06);
+        }
+
+        .accordion-item.open .accordion-header {
+            background: rgba(139, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .char-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .accordion-item.open .char-avatar,
+        .accordion-header:hover .char-avatar {
+            border-color: var(--accent);
+        }
+
+        .char-avatar-placeholder {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #a00000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1rem;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .accordion-item.open .char-avatar-placeholder,
+        .accordion-header:hover .char-avatar-placeholder {
+            border-color: var(--accent);
+        }
+
+        .char-header-info {
+            flex: 1;
+        }
+
+        .char-header-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--text-main);
+            letter-spacing: 0.02em;
+        }
+
+        .char-header-tag {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .accordion-arrow {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: transform 0.35s ease, color 0.3s ease;
+        }
+
+        .accordion-item.open .accordion-arrow {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.35s ease;
+            padding: 0 24px;
+        }
+
+        .accordion-item.open .accordion-body {
+            max-height: 1200px;
+            padding: 24px;
+        }
+
+        /* ─── Inside Accordion Body ─── */
+
+        .char-section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .char-section-label::before {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .scenes-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .scenes-list li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(232, 226, 217, 0.5);
+        }
+
+        .scenes-list li:last-child {
+            border-bottom: none;
+        }
+
+        .scene-num {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: white;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .song-card {
+            background: rgba(253, 250, 246, 0.8);
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            transition: all 0.25s ease;
+        }
+
+        .song-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px -4px rgba(212, 175, 55, 0.15);
+        }
+
+        .song-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .song-title em {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .song-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .song-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .song-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(139, 0, 0, 0.04);
+        }
+
+        .song-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .song-link.karaoke {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .song-link.karaoke:hover {
+            background: rgba(212, 175, 55, 0.08);
+            color: #b8941f;
+        }
+
+        .obligatoire-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 3px 10px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .char-no-song {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 12px 0;
+        }
+
+        .song-file-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .song-file-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(139, 0, 0, 0.04);
+        }
+
+        .song-file-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .song-file-link.karaoke {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .song-file-link.karaoke:hover {
+            background: rgba(212, 175, 55, 0.08);
+            color: #b8941f;
+        }
+
+        .song-original-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        /* ─── Responsive ─── */
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .step-card {
+                padding: 22px 18px;
+            }
+
+            .accordion-header {
+                padding: 14px 18px;
+            }
+
+            .accordion-item.open .accordion-body {
+                padding: 18px;
+            }
+
+            .char-header-name {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .step-card {
+                padding: 18px 14px;
+                gap: 14px;
+            }
+
+            .step-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+
+            .step-text {
+                font-size: 0.85rem;
+            }
+
+            .accordion-header {
+                padding: 12px 14px;
+                gap: 12px;
+            }
+
+            .char-avatar,
+            .char-avatar-placeholder {
+                width: 36px;
+                height: 36px;
+                font-size: 0.85rem;
+            }
+
+            .char-header-name {
+                font-size: 0.9rem;
+            }
+
+            .accordion-item.open .accordion-body {
+                padding: 14px;
+            }
+
+            .song-links {
+                flex-direction: column;
+            }
+
+            .song-card {
+                padding: 12px 14px;
+            }
+        }
+
+        /* ─── Unavailable badge ─── */
+
+        .song-link-unavailable {
+            opacity: 0.4;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .song-unavailable-badge {
+            display: block;
+            width: 100%;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Déroulement</h1>
+            <p class="subtitle">Tout savoir sur le processus d'audition</p>
+        </header>
+
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="resume.html">Résumé</a>
+            <a href="process.html" class="active">Déroulement</a>
+            <a href="characters.html">Personnages</a>
+            <a href="test.html">Casting</a>
+        </nav>
+
+        <main>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- SECTION 1 : Comment ça se passe       -->
+            <!-- ══════════════════════════════════════ -->
+            <section class="process-section" id="comment-ca-se-passe">
+                <h2 class="section-title">Comment ça se passe</h2>
+                <p class="process-intro">
+                    Voici les étapes pour vous préparer au mieux et trouver le rôle qui vous correspond.
+                </p>
+
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <span class="step-number">1</span>
+                        <p class="step-text">
+                            <strong>Parcourez les rôles</strong> disponibles pour découvrir l'univers de Lisann et les personnages qui vous plaisent.
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">2</span>
+                        <p class="step-text">
+                            Un <strong>algorithme de casting</strong> peut suggérer des rôles adaptés à vos compétences et souhaits. <a href="test.html">voir</a>
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">3</span>
+                        <p class="step-text">
+                            <strong>Choisissez un personnage</strong> à auditionner parmi ceux qui vous parlent le plus.
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">4</span>
+                        <p class="step-text">
+                            Sélectionnez <strong>une chanson</strong> parmi celles proposées pour ce personnage. <br><em>Exception : pour Lisann, il faut en préparer deux.</em>
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">5</span>
+                        <p class="step-text">
+                            Si votre personnage <strong>ne chante pas</strong> (rôle théâtral uniquement). Aucune audition de chant n'est requise.
+                        </p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">6</span>
+                        <p class="step-text">
+                            Le jour J, vous présentez les <strong>3 scènes</strong> et <strong>1 chanson</strong> (à votre choix).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- SECTION 2 : Personnages & Chansons    -->
+            <!-- ══════════════════════════════════════ -->
+            <section class="process-section" id="personnages-chansons">
+                <h2 class="section-title">Personnages & Chansons</h2>
+                <p class="process-intro">
+                    Cliquez sur un personnage pour découvrir les scènes à préparer et les chansons à choisir pour votre audition.
+                </p>
+
+                <!-- ── Personnages chantés ── -->
+                <div class="char-category-title">
+                    <span class="cat-icon">♫</span>
+                    Rôles chantés
+                </div>
+
+                <div class="accordion" id="accordion-singing">
+
+                    <!-- ─── LISANN ─── -->
+                    <div class="accordion-item" id="char-lisann">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-lisann">
+                            <img src="Photos/Lisann.png" alt="Lisann" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Lisann</div>
+                                <div class="char-header-tag">3 scènes · 2 chants</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-lisann">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chants à préparer (2 obligatoires)</div>
+
+                            <div class="song-card">
+                                <div class="song-title">Thème phare acapella <em>— Harmonie Scénique</em> <span class="obligatoire-tag">Obligatoire</span></div>
+                                <div class="song-links">
+                                    <a href="" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="song-card">
+                                <div class="song-title">Cruauté <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="song-card">
+                                <div class="song-title">Hymne à l'amour <em>— Edith Piaf</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=sgBldNsK-xw" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=qouv0D6NPow" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── ROI ─── -->
+                    <div class="accordion-item" id="char-roi">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-roi">
+                            <img src="Photos/Roi.png" alt="Roi" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Roi</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-roi">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">Coup de foudre de Charles <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/13DXFdMLF0qjC5b_MEBrkpGvUUtgpHT7i?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/13DXFdMLF0qjC5b_MEBrkpGvUUtgpHT7i?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">La vie ne m'apprend rien <em>— Daniel Balavoine</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=Oa0jq4fjSu4" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=rxWvyQ69UgY" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Vivre ou survivre <em>— Daniel Balavoine</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=aF3wlycNDCM" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=OBQ76YCF6vk" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── CLAIRE ─── -->
+                    <div class="accordion-item" id="char-claire">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-claire">
+                            <img src="Photos/Claire.png" alt="Claire" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Claire</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-claire">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">La jalousie des hommes <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Monopolis <em>— Starmania</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=uTKrsY8G0Rs" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=ylfKs0PZ5W8" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Voilà <em>— Barbara Pravi</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=VJuD7AnV-uw" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=g8ddaJXl514" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── CHARLES ─── -->
+                    <div class="accordion-item" id="char-charles">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-charles">
+                            <img src="Photos/Charles.png" alt="Charles" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Charles</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-charles">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">Coup de foudre de Charles <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/13DXFdMLF0qjC5b_MEBrkpGvUUtgpHT7i?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/13DXFdMLF0qjC5b_MEBrkpGvUUtgpHT7i?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Lettre à France <em>— Michel Polnareff</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=BzA6mnM3dfg" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=02iyEX-JpLM" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">J'ai encore rêvé d'elle <em>— Il était une fois</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=jGRaXdT2-58" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=CZLHTxld2AY" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── OCTAVE ─── -->
+                    <div class="accordion-item" id="char-octave">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-octave">
+                            <img src="Photos/Octave.png" alt="Octave" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Octave</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-octave">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">Bienvenue Octave <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/1ZYZn3PRmWInJ60bIkyjHXNwpuD6JSmD5?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1ZYZn3PRmWInJ60bIkyjHXNwpuD6JSmD5?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">L'enfer <em>— Stromae</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=DO8NSL5Wyeg" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=pXA2N3myrnY" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">L'assasymphonie <em>— Mozart l'Opéra Rock</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=AS0pc9HZ2jk" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=h0CKDbGHM9M" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── REINE ─── -->
+                    <div class="accordion-item" id="char-reine">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-reine">
+                            <img src="Photos/Reine.png" alt="Reine" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Reine</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-reine">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">N'écoute que moi <em>— Raiponce</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=oSIoP7h4B_M" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=cro3zj5FDpY" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Travesti <em>— Starmania</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=JIBBy8Mo5uc" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=jSNLbzqP_Xg" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── MARIE ─── -->
+                    <div class="accordion-item" id="char-marie">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-marie">
+                            <img src="Photos/Marie.png" alt="Marie" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Marie</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-marie">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">La jalousie des hommes <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Je t'écris <em>— Grégory Lemarchal</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=UnFLI5GPdIA" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=fK2U_j548fs" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Il y a trop de gens qui t'aiment <em>— Hélène Ségara</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=tRFUiuXK5Hk" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=GXS0szQu9tA" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── ENGUERRAND ─── -->
+                    <div class="accordion-item" id="char-enguerrand">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-enguerrand">
+                            <img src="Photos/Leader.png" alt="Enguerrand" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Enguerrand</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-enguerrand">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Enguerrand</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Vérone <em>— Roméo & Juliette</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=alz4EiMGIr4" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=6Es75Qja7TA" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Diego, libre dans sa tête <em>— Johnny Hallyday</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=ZtlWIuLkPjw" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=JUSNmuO5vhQ" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── CATHERINE ─── -->
+                    <div class="accordion-item" id="char-catherine">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-catherine">
+                            <img src="Photos/Catherine.png" alt="Catherine" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Catherine</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-catherine">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chant original du spectacle</div>
+                            <div class="song-card">
+                                <div class="song-title">La jalousie des hommes <em>— Harmonie Scénique</em></div>
+                                <div class="song-links">
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1-tyoNJgBO-JW0_UR5VF3BMG-JM7uK_Jk?usp=sharing" target="_blank" class="song-file-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Je t'écris <em>— Grégory Lemarchal</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=UnFLI5GPdIA" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=fK2U_j548fs" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Vivre à en crever <em>— Mozart l'Opéra Rock</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=1yNEohtQSW8" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=5oY9h8swFCI" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── MÈRE DE CLAIRE ─── -->
+                    <div class="accordion-item" id="char-mere-claire">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-mere-claire">
+                            <img src="Photos/Parents.png" alt="Mère de Claire" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Mère de Claire</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-mere-claire">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">Carmen : L'amour est un oiseau rebelle <em>— Maria Callas</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=lspRhX5Vhhg" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=_iIe1Zm4Xqo" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Je suis malade <em>— Lara Fabian</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=5kp0dw4MuWs" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=zZ5GzvP0xhw" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ─── PÈRE DE CLAIRE ─── -->
+                    <div class="accordion-item" id="char-pere-claire">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-pere-claire">
+                            <img src="Photos/Parents.png" alt="Père de Claire" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Père de Claire</div>
+                                <div class="char-header-tag">3 scènes · 1 chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-pere-claire">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+
+                            <div class="char-section-label">Chansons au choix (1 à choisir)</div>
+                            <div class="song-card">
+                                <div class="song-title">La boxeuse amoureuse <em>— Arthur H</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=DOpppaeA7bw" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=U9nk63y_WLY" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="song-card">
+                                <div class="song-title">Être à la hauteur <em>— Emmanuel Moire</em></div>
+                                <div class="song-links">
+                                    <a href="https://www.youtube.com/watch?v=XfbP4NxQBYQ" target="_blank" class="song-link">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418A2.506 2.506 0 0 0 2.418 6.186C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15.464V8.536L16 12l-6 3.464z"/></svg>
+                                        Originale
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=hND_pjOL3Ug" target="_blank" class="song-link karaoke">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                        Karaoké
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /accordion-singing -->
+
+                <!-- ── Personnages non chantés ── -->
+                <div class="char-category-title">
+                    <span class="cat-icon">🎭</span>
+                    Rôles théâtraux
+                </div>
+
+                <div class="accordion" id="accordion-acting">
+
+                    <!-- ─── VINCENT SASSION ─── -->
+                    <div class="accordion-item" id="char-vincent">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-vincent">
+                            <img src="Photos/Vincent.png" alt="Vincent Sassion" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Vincent Sassion</div>
+                                <div class="char-header-tag">3 scènes · pas de chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-vincent">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+                            <p class="char-no-song">Ce personnage ne chante pas — aucune audition de chant requise.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── CHEF DE LA GARDE ─── -->
+                    <div class="accordion-item" id="char-chef-garde">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-chef-garde">
+                            <img src="Photos/Chef-gardes.png" alt="Chef de la garde" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Chef de la garde</div>
+                                <div class="char-header-tag">3 scènes · pas de chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-chef-garde">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+                            <p class="char-no-song">Ce personnage ne chante pas — aucune audition de chant requise.</p>
+                        </div>
+                    </div>
+
+                    <!-- ─── DISCIPLES ─── -->
+                    <div class="accordion-item" id="char-disciples">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="body-disciples">
+                            <img src="Photos/Disciples.png" alt="Disciples" class="char-avatar">
+                            <div class="char-header-info">
+                                <div class="char-header-name">Disciples</div>
+                                <div class="char-header-tag">3 scènes · pas de chant</div>
+                            </div>
+                            <span class="accordion-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-body" id="body-disciples">
+                            <div class="char-section-label">Scènes à préparer</div>
+                            <ul class="scenes-list">
+                                <li><span class="scene-num">1</span> Scène 1 <em>(Enguerrand — Catherine)</em> → jouer <strong>Catherine</strong></li>
+                                <li><span class="scene-num">2</span> Scène 2 <em>(Charles — Roi, Reine)</em> → jouer <strong>Charles</strong></li>
+                                <li><span class="scene-num">3</span> Scène 3 <em>(Enguerrand — Médéric)</em> → jouer <strong>Enguerrand</strong></li>
+                            </ul>
+                            <p class="char-no-song">Ce personnage ne chante pas — aucune audition de chant requise.</p>
+                        </div>
+                    </div>
+
+                </div><!-- /accordion-acting -->
+
+            </section>
+
+        </main>
+
+        <footer>
+            <h5>© 2026 Lisann - Thibault Moret</h5>
+        </footer>
+    </div>
+
+    <script>
+        // Accordion toggle logic
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.closest('.accordion-item');
+                const isOpen = item.classList.contains('open');
+
+                // Close all items in the same accordion
+                const accordion = item.closest('.accordion');
+                accordion.querySelectorAll('.accordion-item.open').forEach(openItem => {
+                    openItem.classList.remove('open');
+                    openItem.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                });
+
+                // Toggle current item
+                if (!isOpen) {
+                    item.classList.add('open');
+                    button.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Flag empty links as unavailable
+        document.querySelectorAll('.song-links a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') {
+                link.classList.add('song-link-unavailable');
+                link.removeAttribute('target');
+                link.addEventListener('click', e => e.preventDefault());
+
+                const songCard = link.closest('.song-card');
+                if (songCard && !songCard.querySelector('.song-unavailable-badge')) {
+                    const badge = document.createElement('p');
+                    badge.className = 'song-unavailable-badge';
+                    badge.textContent = 'Désolé, l\'instrumental n\'est pas encore disponible pour cette chanson. Elle arrive bientôt, Thibault est dessus 🎹';
+                    songCard.appendChild(badge);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

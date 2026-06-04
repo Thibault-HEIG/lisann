@@ -21,6 +21,8 @@
 
         <nav>
             <a href="index.html">Accueil</a>
+            <a href="resume.html">Résumé</a>
+            <a href="process.html">Déroulement</a>
             <a href="characters.html">Personnages</a>
             <a href="test.html" class="active">Casting</a>
         </nav>
@@ -67,10 +69,10 @@
             { name: "Lisann", gender: "F", photo: "Photos/Lisann.png", values: [10, 2, 10, 10, 0, 10, 6, 0, 0] },
             { name: "Roi", gender: "M", photo: "Photos/Roi.png", values: [10, 4, 5, 7, 1, 8, 5, 4, 9] },
             { name: "Claire", gender: "F", photo: "Photos/Claire.png", values: [9, 9, 10, 3, 8, 7, 8, 7, 4] },
-            { name: "Vincent", gender: "M", photo: "Photos/Vincent.png", values: [4, 8, 6, 6, 5, 3, 7, 10, 3] },
+            { name: "Vincent", gender: "M", photo: "Photos/Vincent.png", values: [4, 8, 6, 6, 5, 2, 7, 10, 3] },
             { name: "Père de Claire", gender: "M", photo: "Photos/Parents.png", values: [1, 3, 2, 5, 8, 6, 5, 2, 7] },
             { name: "Mère de Claire", gender: "F", photo: "Photos/Parents.png", values: [1, 7, 2, 9, 4, 6, 5, 3, 5] },
-            { name: "Chef de la garde", gender: "All", photo: "Photos/Chef-gardes.png", values: [2, 8, 2, 10, 1, 4, 6, 3, 0] },
+            { name: "Chef de la garde", gender: "All", photo: "Photos/Chef-gardes.png", values: [2, 8, 2, 10, 1, 2, 6, 3, 0] },
             { name: "Disciple", gender: "All", photo: "Photos/Disciples.png", values: [6, 8, 5, 2, 4, 1, 7, 10, 4] }
         ];
 
@@ -139,7 +141,7 @@
                 const similarity = cosineSimilarity(userCharVec, roleCharVec);
                 const finalCharScore = (similarity + 1) / 2;
 
-                const totalScore = (finalPerfScore * 0.6) + (finalCharScore * 0.4);
+                const totalScore = (finalPerfScore * 0.4) + (finalCharScore * 0.6);
 
                 return {
                     ...role,

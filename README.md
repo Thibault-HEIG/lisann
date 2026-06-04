@@ -14,14 +14,14 @@ Chaque rôle possède un vecteur de 9 valeurs (0 à 10) correspondant aux critè
 ### 2. Filtrage par Genre
 L'utilisateur peut filtrer les résultats par genre (Hommes, Femmes, ou Tous). Certains rôles sont marqués comme "All" et apparaissent dans tous les filtres.
 
-### 3. Calcul du Score de Performance (Poids : 60%)
+### 3. Calcul du Score de Performance (Poids : 40%)
 Le score de performance mesure si l'utilisateur possède le niveau technique requis pour le rôle.
 - Pour chaque compétence (Chant, Danse, Théâtre) :
   - On calcule un ratio de "couverture" : `min(UserValue, RoleRequirement) / RoleRequirement`.
   - Si le rôle ne requiert aucune compétence (0), le ratio est de 1.
 - Le score final de performance est la moyenne de ces ratios.
 
-### 4. Calcul du Score de Caractère (Poids : 40%)
+### 4. Calcul du Score de Caractère (Poids : 60%)
 Le score de caractère utilise la **Similitude Cosinus** pour comparer le "profil psychologique" de l'utilisateur avec celui du rôle.
 - **Centrage** : Les valeurs (0-10) sont centrées sur 5 (`valeur - 5`) pour obtenir des vecteurs allant de -5 à 5. Cela permet de distinguer les traits dominants des traits plus effacés.
 - **Cosinus Similarity** : On calcule l'angle entre le vecteur utilisateur et le vecteur rôle.
@@ -31,7 +31,7 @@ Le score de caractère utilise la **Similitude Cosinus** pour comparer le "profi
 
 ### 5. Score Final et Affichage
 Le score total est une moyenne pondérée :
-`Total = (ScorePerformance * 0.6) + (ScoreCaractère * 0.4)`
+`Total = (ScorePerformance * 0.4) + (ScoreCaractère * 0.6)`
 
 Les rôles sont ensuite triés par score décroissant. Un badge "Rôle Idéal" est attribué si le score dépasse 90%.
 
