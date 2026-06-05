@@ -1,13 +1,17 @@
 /* theme.css */
 :root {
-    --primary: #8b0000; /* Dark Crimson */
-    --accent: #d4af37;  /* Gold */
-    --bg: #fdfaf6;      /* Warm Parchment */
+    --primary: #8b0000;
+    /* Dark Crimson */
+    --accent: #d4af37;
+    /* Gold */
+    --bg: #fdfaf6;
+    /* Warm Parchment */
     --card-bg: #ffffff;
     --text-main: #1a1a1a;
     --text-muted: #5c5c5c;
     --border: #e8e2d9;
-    --radius: 4px;      /* Sharp, elegant corners */
+    --radius: 4px;
+    /* Sharp, elegant corners */
     --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -4px rgba(0, 0, 0, 0.05);
 }
 
@@ -107,12 +111,18 @@ nav a {
     color: var(--text-muted);
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     color: var(--primary);
 }
 
 /* ─── Tablet ─── */
 @media (max-width: 768px) {
+
+    main {
+        padding: 0 3%;
+    }
+
     header {
         margin-bottom: 35px;
     }
